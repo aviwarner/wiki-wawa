@@ -39,3 +39,7 @@ source 'https://rubygems.org'
  group :development do
    gem 'listen', '~> 3.0.5'
  end
+
+ # Devise added for authentication
+ gem 'devise'
+ gem 'figaro', '1.0'
