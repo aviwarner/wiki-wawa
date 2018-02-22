@@ -19,6 +19,7 @@
       <ul class="nav nav-pills nav-fill">
         <li class="nav-item"><%= link_to "Home", welcome_index_path %></li>
         <li class="nav-item"><%= link_to "About", welcome_about_path %></li>
+        <li class="nav-item"><%= link_to "Wikis", wikis_path %></li>
         <% if user_signed_in? %>
         <li class="pull-right nav-item">
           <span class="navbar-text">Signed in as: <strong><%= current_user.email %></strong></span>

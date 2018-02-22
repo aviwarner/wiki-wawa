@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'random_data'
+
+10.times do
+  User.create!(
+    email: "#{RandomData.random_word}@#{RandomData.random_word}.com",
+    password: "password",
+    password_confirmation: "password"
+  )
+end
+
+users = User.all
+
+50.times do
+   Wiki.create!(
+     title:  RandomData.random_sentence,
+     body:   RandomData.random_paragraph,
+     private: false,
+     user: users.sample
+   )
+ end
+
+ wikis = Wiki.all
+
+
+puts "#{User.count} users created"
+puts "#{Wiki.count} wikis created"
