@@ -43,3 +43,4 @@ source 'https://rubygems.org'
  # Devise added for authentication
  gem 'devise'
  gem 'figaro', '1.0'
+ gem 'pundit'
