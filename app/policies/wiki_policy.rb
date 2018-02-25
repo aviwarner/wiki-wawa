@@ -6,6 +6,26 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present?
+    if @wiki.private
+      user.present? && user == @wiki.user
+    else
+      user.present?
+    end
+  end
+
+  def show?
+    if @wiki.private
+      user.present? && user == @wiki.user
+    else
+      user.present?
+    end
+  end
+
+  def index?
+    if @wiki.private
+      user.present? && user == @wiki.user
+    else
+      user.present?
+    end
   end
 end

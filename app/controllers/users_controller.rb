@@ -1,10 +1,19 @@
 class UsersController < ApplicationController
   def update
-    current_user.standard!
+    @user = current_user
+    @user.standard!
+    @wikis = @user.wikis
 
-    if current_user.save
+    @wikis.each do |w|
+      if w.private
+        w.private = false
+        w.save!
+      end
+    end
+
+    if @user.save
       flash[:notice] = "You've been downgraded!"
-      render :edit
+      redirect_to edit_user_registration_path
     else
       flash.now[:alert] = "Error saving topic, try again."
       render :edit

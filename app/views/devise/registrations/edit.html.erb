@@ -64,7 +64,7 @@
 <% end %>
 
 <% if current_user.premium? %>
-  <p>Downgrade your account, no refunds! <%= button_to "Downgrade my account", users_update_path, method: :get %></p>
+  <p>Downgrade your account, no refunds! <%= button_to "Downgrade my account", users_update_path, data: { confirm: "Are you sure? ALL your private wikis will become public." }, method: :get %></p>
 <% end %>
 
 <h3>Cancel my account</h3>
