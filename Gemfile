@@ -43,5 +43,12 @@ source 'https://rubygems.org'
  # Devise added for authentication
  gem 'devise'
  gem 'figaro', '1.0'
+
+ # Use pundit for roles & policies
  gem 'pundit'
+
+ # Use Faker for seed data
  gem 'faker'
+
+ # Use stripe for payments processing
+ gem 'stripe'

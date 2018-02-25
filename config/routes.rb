@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'users/update'
+
   devise_for :users
   resources :wikis
+  resources :charges, only: [:new, :create, :downgrade]
 
   get 'welcome/index'
 

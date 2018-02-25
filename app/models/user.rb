@@ -10,6 +10,14 @@ class User < ApplicationRecord
   def init
     self.role ||= :standard
   end
-  
+
   enum role: [:standard, :admin, :premium]
+
+  def upgrade
+    self.role = :premium
+  end
+
+  def downgrade
+    self.standard!
+  end
 end
