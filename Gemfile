@@ -52,3 +52,6 @@ source 'https://rubygems.org'
 
  # Use stripe for payments processing
  gem 'stripe'
+
+ # Use redcarpet for markdown
+ gem 'redcarpet'

@@ -1,7 +1,15 @@
 <h1>Edit Wiki</h1>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-6">
     <%= render partial: 'form', locals: { wiki: @wiki } %>
+  </div>
+  <div class="col-md-6">
+      <p>
+        <strong>Markdown Preview</strong>
+      </p>
+      <div class="bg-light text-dark">
+        <%= markdown(@wiki.body) %>
+      </div>
   </div>
 </div>

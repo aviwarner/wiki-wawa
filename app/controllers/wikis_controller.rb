@@ -1,4 +1,10 @@
 class WikisController < ApplicationController
+  class << self
+    def markdown
+      Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    end
+  end
+  
   def index
     @wikis = Wiki.all
   end
