@@ -1,4 +1,4 @@
-<h2>Edit <%= "User ##{current_user.id}, role: #{current_user.role}"%></h2>
+<h2>Edit <%= "User ##{current_user.id}"%></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -40,7 +40,6 @@
 <h3>Account type: <%= current_user.role %></h3>
 
 <% if current_user.standard? %>
-  <!-- <p>Upgrade to <strong>Premium</strong> for private wikis. <%= button_to "Upgrade my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
 
   <%= form_tag charges_path do %>
     <article>
@@ -56,15 +55,19 @@
 
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Wiki-Wawa Premium"
-            data-amount="1500"
+            data-description="Premium Upgrade"
+            data-amount= <%= Amount.default %>
             data-locale="auto"></script>
   <% end %>
 
 <% end %>
 
 <% if current_user.premium? %>
+<<<<<<< HEAD
   <p>Downgrade your account, no refunds! <%= button_to "Downgrade my account", users_update_path, data: { confirm: "Are you sure? ALL your private wikis will become public." }, method: :get %></p>
+=======
+  <p>Downgrade your account, no refunds! <%= button_to "Downgrade my account", users_downgrade_path, method: :get %></p>
+>>>>>>> user-story-6-revisions
 <% end %>
 
 <h3>Cancel my account</h3>

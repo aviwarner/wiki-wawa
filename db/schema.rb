@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180225223820) do
+=======
+ActiveRecord::Schema.define(version: 20180227054226) do
+
+  create_table "amounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price"
+  end
+>>>>>>> user-story-6-revisions
 
   create_table "charges", force: :cascade do |t|
     t.datetime "created_at", null: false
