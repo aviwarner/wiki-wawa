@@ -1,11 +1,4 @@
 class ChargesController < ApplicationController
-  def new
-    @stripe_btn_data = {
-     key: "#{ Rails.configuration.stripe[:publishable_key] }",
-     description: "BigMoney Membership - #{current_user.email}",
-     amount: Amount.default
-   }
-  end
 
   def create
    # Creates a Stripe Customer object, for associating
@@ -18,8 +11,6 @@ class ChargesController < ApplicationController
    # Where the real magic happens
    charge = Stripe::Charge.create(
      customer: customer.id, # Note -- this is NOT the user_id in your app
-     amount: Amount.default,
-     description: "Premium Membership - #{current_user.email}",
      currency: 'usd'
    )
 
@@ -34,19 +25,6 @@ class ChargesController < ApplicationController
    rescue Stripe::CardError => e
      flash[:alert] = e.message
      redirect_to new_charge_path
- end
-
- def downgrade
-   current_user.standard!
- end
-
- class Amount
-   def initialize
-   end
-
-   def self.default
-     15_00
-   end
  end
 
 end
