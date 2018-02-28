@@ -1,13 +1,6 @@
 class UsersController < ApplicationController
-<<<<<<< HEAD
-  def update
-    @user = current_user
-    @user.standard!
-    @wikis = @user.wikis
-=======
   def downgrade
     current_user.standard!
->>>>>>> user-story-6-revisions
 
     @wikis.each do |w|
       if w.private
