@@ -13,3 +13,31 @@
       </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Email</th>
+          <th scope="col">Collaborator</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% User.all.each do |u| %>
+        <tr>
+          <th scope="row"><%= "#{u.id}" %></th>
+          <td><%= "#{u.email}" %></td>
+          <td>
+            <% if u.collaborator_for(@wiki) %>
+              Remove
+            <% else %>
+              <%= button_to "Add", collaborators_path, method: :post, params: { user_id: u.id, wiki_id: @wiki.id } %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

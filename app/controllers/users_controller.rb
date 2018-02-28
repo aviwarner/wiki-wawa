@@ -16,5 +16,4 @@ class UsersController < ApplicationController
       flash.now[:alert] = "Error saving topic, try again."
       render :edit
     end
-  end
 end
