@@ -15,29 +15,31 @@
 </div>
 <div class="row">
   <div class="col-md-6">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Email</th>
-          <th scope="col">Collaborator</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% User.all.each do |u| %>
-        <tr>
-          <th scope="row"><%= "#{u.id}" %></th>
-          <td><%= "#{u.email}" %></td>
-          <td>
-            <% if u.collaborator_for(@wiki) %>
-              Remove
-            <% else %>
-              <%= button_to "Add", collaborators_path, method: :post, params: { user_id: u.id, wiki_id: @wiki.id } %>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% if @wiki.private? && (current_user.admin? || current_user.id == @wiki.user_id) %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Collaborator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% User.all.each do |u| %>
+          <tr>
+            <th scope="row"><%= "#{u.id}" %></th>
+            <td><%= "#{u.email}" %></td>
+            <td>
+              <% if u.collaborator_for(@wiki) %>
+                <%= button_to "Remove", collaborator_path, method: :delete, params: { user_id: u.id, wiki_id: @wiki.id }, remote: true %>
+              <% else %>
+                <%= button_to "Add", collaborators_path, method: :post, params: { user_id: u.id, wiki_id: @wiki.id }, remote: true %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>

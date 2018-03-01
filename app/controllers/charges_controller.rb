@@ -11,6 +11,7 @@ class ChargesController < ApplicationController
    # Where the real magic happens
    charge = Stripe::Charge.create(
      customer: customer.id, # Note -- this is NOT the user_id in your app
+     amount: 1500,
      currency: 'usd'
    )
 
