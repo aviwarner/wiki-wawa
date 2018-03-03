@@ -30,4 +30,8 @@ class WikiPolicy < ApplicationPolicy
       wikis # return the wikis array we've built up
     end
   end
+
+  def update?
+    (user.admin? || user.premium?) && @wiki.user_id == user.id
+  end
 end
